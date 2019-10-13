@@ -81,6 +81,13 @@
               )
     (linum-mode 1)))
 
+(defun display-line-numbers--turn-on ()
+  "Support linum-off mode for `display-line-numbers-mode'."
+  (unless (or (minibufferp)
+              (member major-mode linum-disabled-modes-list)
+              (and linum-disable-starred-buffers (string-match "*" (buffer-name))))
+    (display-line-numbers-mode)))
+
 (provide 'linum-off)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
